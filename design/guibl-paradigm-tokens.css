@@ -1,0 +1,78 @@
+/**
+ * GUIBL Paradigm-Inspired — tokens compartidos
+ * Fuente: project-creator/DESIGN.md · design-system.html
+ * Referencia: https://www.paradigmai.com/
+ */
+
+:root {
+  --pg-canvas: #f6f7f8;
+  --pg-surface: #ffffff;
+  --pg-surface-muted: #f0f0f2;
+  --pg-ink: #080b12;
+  --pg-secondary: #434347;
+  --pg-muted: #6b6b70;
+  --pg-border: #e3e4e8;
+  --pg-border-strong: #d0d1d6;
+  --pg-accent: #0a33ff;
+  --pg-accent-hover: #082bcc;
+  --pg-accent-subtle: rgba(10, 51, 255, 0.08);
+  --pg-success: #059669;
+  --pg-success-subtle: rgba(5, 150, 105, 0.08);
+  --pg-warning: #d97706;
+  --pg-warning-subtle: rgba(217, 119, 6, 0.1);
+  --pg-error: #dc2626;
+  --pg-error-subtle: rgba(220, 38, 38, 0.08);
+  --pg-font-sans: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --pg-font-serif: "Newsreader", "Palatino Linotype", Palatino, Georgia, serif;
+  --pg-input-height: 36px;
+  --pg-agenda-sync-head-min: 5.25rem;
+
+  /*
+   * Uso del acento (#0a33ff)
+   * — SÍ: CTA primario (formularios, modales, navbar activo), focus ring, links, día seleccionado en calendario.
+   * — NO: fondo de botones en tableros, iconos copy/delete, triggers de fecha, celdas de estado (semáforo).
+   * — PROHIBIDO en CSS global: html[data-theme] button { background: var(--pg-accent) }
+   */
+  --pg-estado-pendiente-bg: #f0f0f2;
+  --pg-estado-enviado-bg: #ffb300;
+  --pg-estado-aceptado-bg: #00b858;
+  --pg-estado-cobrado-bg: #005963;
+}
+
+/* Tema claro — Paradigm (web + Project Creator) */
+html[data-theme="light"] {
+  color-scheme: light;
+
+  --radius: 0;
+  --radius-lg: 0;
+
+  --bg: var(--pg-canvas);
+  --surface: var(--pg-surface);
+  --surface-hover: var(--pg-surface-muted);
+  --surface-raised: var(--pg-surface);
+  --border: var(--pg-border);
+  --border-subtle: var(--pg-border);
+  --text: var(--pg-ink);
+  --text-secondary: var(--pg-secondary);
+  --muted: var(--pg-muted);
+  --accent: var(--pg-accent);
+  --accent-hover: var(--pg-accent-hover);
+  --accent-subtle: var(--pg-accent-subtle);
+  --success: var(--pg-success);
+  --success-subtle: var(--pg-success-subtle);
+  --warning: var(--pg-warning);
+  --warning-subtle: var(--pg-warning-subtle);
+  --error: var(--pg-error);
+  --error-subtle: var(--pg-error-subtle);
+  --shadow: none;
+  --shadow-lg: none;
+  --estado-pendiente-bg: var(--pg-surface-muted);
+
+  font-family: var(--pg-font-sans);
+}
+
+html[data-theme="light"],
+html[data-theme="light"] body {
+  background: var(--pg-canvas);
+  color: var(--pg-ink);
+}

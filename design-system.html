@@ -1,0 +1,1131 @@
+<!doctype html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GUIBL — Design System (Paradigm-inspired)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet" />
+  <style>
+    /* ================================================================
+       GUIBL Design System — tokens en design/guibl-paradigm-tokens.css
+       Esquinas rectas (radius 0) en UI operativa.
+       Referencias: Paradigm (paradigmai.com), tabs/workflows, cards planas.
+       ================================================================ */
+    :root {
+      --pg-canvas: #f6f7f8;
+      --pg-surface: #ffffff;
+      --pg-surface-muted: #f0f0f2;
+      --pg-ink: #080b12;
+      --pg-secondary: #434347;
+      --pg-muted: #6b6b70;
+      --pg-border: #e3e4e8;
+      --pg-border-strong: #d0d1d6;
+      --pg-accent: #0a33ff;
+      --pg-accent-hover: #082bcc;
+      --pg-accent-subtle: rgba(10, 51, 255, 0.08);
+      --pg-success: #059669;
+      --pg-success-subtle: rgba(5, 150, 105, 0.08);
+      --pg-warning: #d97706;
+      --pg-warning-subtle: rgba(217, 119, 6, 0.1);
+      --pg-error: #dc2626;
+      --pg-error-subtle: rgba(220, 38, 38, 0.08);
+      --pg-estado-pendiente-bg: #f0f0f2;
+      --pg-estado-enviado-bg: #ffb300;
+      --pg-estado-aceptado-bg: #00b858;
+      --pg-estado-cobrado-bg: #005963;
+      --pg-radius: 0;
+      --pg-font-sans: "Inter", "Helvetica Neue", Arial, sans-serif;
+      --pg-font-serif: "Newsreader", "Palatino Linotype", Palatino, Georgia, serif;
+      --pg-input-height: 36px;
+      --pg-input-height-sm: 28px;
+      --pg-agenda-day-width: 136px;
+      --pg-agenda-day-height: 120px;
+      --pg-sync-head-min: 5.25rem;
+      --pg-sidebar-width: 52px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--pg-canvas);
+      color: var(--pg-ink);
+      font-family: var(--pg-font-sans);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    a { color: var(--pg-accent); }
+
+    .ds-layout {
+      display: grid;
+      grid-template-columns: 240px minmax(0, 1fr);
+      min-height: 100vh;
+    }
+
+    .ds-nav {
+      position: sticky;
+      top: 0;
+      align-self: start;
+      max-height: 100vh;
+      overflow-y: auto;
+      padding: 1.25rem 1rem;
+      background: var(--pg-surface);
+      border-right: 1px solid var(--pg-border);
+    }
+
+    .ds-nav__logo {
+      display: block;
+      height: 1.4rem;
+      width: auto;
+      margin-bottom: 1rem;
+    }
+
+    .ds-nav h1 {
+      margin: 0 0 0.35rem;
+      font-family: var(--pg-font-serif);
+      font-size: 1.125rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .ds-nav__meta {
+      margin: 0 0 1.25rem;
+      font-size: 0.75rem;
+      color: var(--pg-muted);
+      line-height: 1.4;
+    }
+
+    .ds-nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+
+    .ds-nav a {
+      display: block;
+      padding: 0.35rem 0.5rem;
+      color: var(--pg-secondary);
+      text-decoration: none;
+      font-size: 0.8125rem;
+      border-left: 2px solid transparent;
+    }
+
+    .ds-nav a:hover {
+      color: var(--pg-ink);
+      background: var(--pg-surface-muted);
+    }
+
+    .ds-main {
+      padding: 2rem clamp(1.25rem, 4vw, 3rem) 4rem;
+      max-width: 1100px;
+    }
+
+    .ds-section {
+      margin-bottom: 3.5rem;
+      scroll-margin-top: 1.5rem;
+    }
+
+    .ds-kicker {
+      margin: 0 0 0.35rem;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--pg-muted);
+    }
+
+    .ds-section h2 {
+      margin: 0 0 0.75rem;
+      font-family: var(--pg-font-serif);
+      font-size: clamp(1.5rem, 3vw, 1.85rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+    }
+
+    .ds-lead {
+      margin: 0 0 1.5rem;
+      max-width: 62ch;
+      color: var(--pg-secondary);
+      font-size: 0.9375rem;
+    }
+
+    .ds-panel {
+      background: var(--pg-surface);
+      border: 1px solid var(--pg-border);
+      border-radius: var(--pg-radius);
+      padding: 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .ds-panel h3 {
+      margin: 0 0 0.75rem;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--pg-muted);
+    }
+
+    .ds-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+
+    .ds-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 0.75rem;
+    }
+
+    .ds-token-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8125rem;
+    }
+
+    .ds-token-table th,
+    .ds-token-table td {
+      padding: 0.5rem 0.65rem;
+      border-bottom: 1px solid var(--pg-border);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .ds-token-table th {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--pg-muted);
+      background: var(--pg-surface-muted);
+    }
+
+    .ds-swatch {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .ds-swatch__chip {
+      width: 1.25rem;
+      height: 1.25rem;
+      border: 1px solid var(--pg-border);
+      flex-shrink: 0;
+    }
+
+    code {
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-size: 0.8125em;
+      background: var(--pg-surface-muted);
+      padding: 0.1em 0.35em;
+    }
+
+    /* —— Buttons (guibl-theme light) —— */
+    .btn {
+      appearance: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35rem;
+      min-height: var(--pg-input-height);
+      padding: 0.45rem 0.85rem;
+      font: inherit;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      border-radius: var(--pg-radius);
+      border: 1px solid var(--pg-accent);
+      background: var(--pg-accent);
+      color: #fff;
+      cursor: pointer;
+      box-shadow: none;
+    }
+
+    .btn:hover { background: var(--pg-accent-hover); border-color: var(--pg-accent-hover); }
+
+    .btn.secondary {
+      background: var(--pg-surface);
+      border-color: var(--pg-border);
+      color: var(--pg-ink);
+      font-weight: 500;
+    }
+
+    .btn.secondary:hover {
+      background: var(--pg-surface-muted);
+      border-color: var(--pg-border-strong);
+    }
+
+    .btn.ghost {
+      background: transparent;
+      border-color: transparent;
+      color: var(--pg-muted);
+      font-weight: 500;
+      min-height: auto;
+      padding: 0.35rem 0.5rem;
+    }
+
+    .btn.ghost:hover {
+      background: var(--pg-surface-muted);
+      color: var(--pg-ink);
+    }
+
+    .btn.icon-only {
+      width: 2rem;
+      min-width: 2rem;
+      height: 2rem;
+      min-height: 2rem;
+      padding: 0;
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    /* —— Text inputs (pc-field / agenda) —— */
+    label.ds-field {
+      display: grid;
+      gap: 0.35rem;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--pg-secondary);
+    }
+
+    .pc-field,
+    .agenda-search,
+    .agenda-project-notes,
+    .agenda-task__input {
+      width: 100%;
+      min-height: var(--pg-input-height);
+      padding: 0.45rem 0.75rem;
+      font: inherit;
+      font-size: 0.8125rem;
+      color: var(--pg-ink);
+      background: var(--pg-surface);
+      border: 1px solid var(--pg-border);
+      border-radius: var(--pg-radius);
+    }
+
+    .pc-field:focus,
+    .agenda-search:focus,
+    .agenda-project-notes:focus,
+    .agenda-task__input:focus {
+      outline: none;
+      border-color: var(--pg-accent);
+      box-shadow: 0 0 0 2px var(--pg-accent-subtle);
+    }
+
+    .agenda-project-notes {
+      min-height: 5rem;
+      resize: vertical;
+    }
+
+    .agenda-task__input {
+      min-height: var(--pg-input-height-sm);
+      padding: 0.2rem 0.4rem;
+    }
+
+    /* —— DatePickerField —— */
+    .gui-date-picker { position: relative; width: 100%; }
+
+    .gui-date-picker__trigger {
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.4rem;
+      width: 100%;
+      min-height: 1.75rem;
+      padding: 0.2rem 0.4rem;
+      font-size: 0.8125rem;
+      font-family: inherit;
+      background: var(--pg-surface);
+      border: 1px solid var(--pg-border);
+      border-radius: 0;
+      color: var(--pg-ink);
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .gui-date-picker__trigger:focus {
+      outline: none;
+      border-color: var(--pg-accent);
+      box-shadow: 0 0 0 2px var(--pg-accent-subtle);
+    }
+
+    .gui-date-picker__placeholder { color: var(--pg-muted); }
+
+    .gui-date-picker__icon { opacity: 0.55; color: var(--pg-muted); flex-shrink: 0; }
+
+    .gui-date-picker__popover-demo {
+      margin-top: 0.5rem;
+      padding: 0.65rem 0.75rem;
+      background: var(--pg-surface);
+      border: 1px solid var(--pg-border);
+      border-radius: 0;
+      max-width: 280px;
+    }
+
+    .rdp-demo-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+      font-size: 0.8125rem;
+      font-weight: 600;
+    }
+
+    .rdp-demo-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 2.125rem);
+      gap: 2px;
+      font-size: 0.75rem;
+      text-align: center;
+    }
+
+    .rdp-demo-grid span {
+      height: 2.125rem;
+      line-height: 2.125rem;
+      color: var(--pg-muted);
+      font-size: 0.65rem;
+      font-weight: 600;
+    }
+
+    .rdp-day {
+      height: 2.125rem;
+      line-height: 2.125rem;
+      border: 1px solid transparent;
+      background: var(--pg-surface);
+      color: var(--pg-ink);
+    }
+
+    .rdp-day.is-today {
+      border-color: var(--pg-accent);
+      color: var(--pg-accent);
+      font-weight: 600;
+    }
+
+    .rdp-day.is-selected {
+      background: var(--pg-accent);
+      border-color: var(--pg-accent);
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .rdp-day.is-outside { color: var(--pg-muted); }
+
+    /* —— Link field (agenda) —— */
+    .agenda-link-field {
+      display: flex;
+      align-items: stretch;
+      border: 1px solid var(--pg-border);
+      border-radius: var(--pg-radius);
+      background: var(--pg-surface);
+      overflow: hidden;
+    }
+
+    .agenda-link-field:focus-within {
+      border-color: var(--pg-accent);
+      box-shadow: 0 0 0 2px var(--pg-accent-subtle);
+    }
+
+    .agenda-link-field__type {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.5rem;
+      flex-shrink: 0;
+      border-right: 1px solid var(--pg-border);
+      background: var(--pg-surface-muted);
+      font-size: 0.65rem;
+      color: var(--pg-muted);
+    }
+
+    .agenda-link-field__input {
+      flex: 1;
+      min-width: 0;
+      border: none;
+      padding: 0.45rem 0.65rem;
+      font: inherit;
+      font-size: 0.8125rem;
+      background: transparent;
+      border-radius: 0;
+    }
+
+    .agenda-link-field__input:focus { outline: none; }
+
+    .agenda-link-field__actions {
+      display: flex;
+      border-left: 1px solid var(--pg-border);
+    }
+
+    .agenda-link-field__icon-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.25rem;
+      border: none;
+      background: transparent;
+      color: var(--pg-muted);
+      cursor: pointer;
+      border-radius: 0;
+    }
+
+    .agenda-link-field__icon-btn:hover {
+      background: var(--pg-surface-muted);
+      color: var(--pg-ink);
+    }
+
+    /* —— Task status select —— */
+    .agenda-task__status {
+      min-width: 6.85rem;
+      appearance: none;
+      border: 1px solid var(--pg-border);
+      border-radius: var(--pg-radius);
+      padding: 0.2rem 1.35rem 0.2rem 0.35rem;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      background: var(--pg-surface);
+      color: var(--pg-muted);
+      cursor: pointer;
+    }
+
+    .agenda-task__status--pending { color: var(--pg-muted); }
+    .agenda-task__status--in_progress { color: var(--pg-warning); border-color: color-mix(in srgb, var(--pg-warning) 35%, var(--pg-border)); }
+    .agenda-task__status--completed { color: var(--pg-success); border-color: color-mix(in srgb, var(--pg-success) 35%, var(--pg-border)); }
+
+    /* —— Pending note toggle —— */
+    .agenda-pending-note__toggle {
+      padding: 0.1rem 0.35rem;
+      border: none;
+      background: transparent;
+      color: var(--pg-muted);
+      font-size: 0.625rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 0;
+    }
+
+    .agenda-pending-note__toggle:hover {
+      color: var(--pg-accent-hover);
+      background: var(--pg-accent-subtle);
+    }
+
+    .agenda-pending-note__input {
+      width: 100%;
+      min-height: 3rem;
+      padding: 0.35rem 0.45rem;
+      border: 1px solid var(--pg-border);
+      border-radius: 0;
+      font: inherit;
+      font-size: 0.8125rem;
+      resize: vertical;
+    }
+
+    /* —— Icon sidebar —— */
+    .demo-shell {
+      display: grid;
+      grid-template-columns: var(--pg-sidebar-width) minmax(0, 1fr);
+      border: 1px solid var(--pg-border);
+      background: var(--pg-surface);
+      min-height: 220px;
+    }
+
+    .demo-sidebar {
+      border-right: 1px solid var(--pg-border);
+      display: flex;
+      flex-direction: column;
+      padding: 0;
+    }
+
+    .demo-sidebar button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 0.62rem 0;
+      border: none;
+      background: transparent;
+      color: var(--pg-muted);
+      cursor: pointer;
+      border-radius: 0;
+    }
+
+    .demo-sidebar button.is-active {
+      background: var(--pg-accent-subtle);
+      color: var(--pg-accent);
+      box-shadow: inset 2px 0 0 var(--pg-accent);
+    }
+
+    .demo-sidebar button:hover:not(.is-active) {
+      background: var(--pg-surface-muted);
+      color: var(--pg-ink);
+    }
+
+    .demo-main-head {
+      min-height: var(--pg-sync-head-min);
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid var(--pg-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .demo-main-head img { height: 1.55rem; }
+
+    /* —— Calendar day cell —— */
+    .agenda-calendar-demo {
+      display: inline-block;
+      border: 1px solid var(--pg-border);
+    }
+
+    .agenda-week-demo {
+      display: grid;
+      grid-template-columns: repeat(7, var(--pg-agenda-day-width));
+    }
+
+    .agenda-day {
+      width: var(--pg-agenda-day-width);
+      height: var(--pg-agenda-day-height);
+      border-right: 1px solid var(--pg-border);
+      border-bottom: 1px solid var(--pg-border);
+      background: var(--pg-surface);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .agenda-day:last-child { border-right: none; }
+
+    .agenda-day--today {
+      border: 1px solid var(--pg-accent);
+      background: var(--pg-accent-subtle);
+      z-index: 1;
+    }
+
+    .agenda-day__head {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.2rem 0.35rem;
+      font-size: 0.5625rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--pg-muted);
+    }
+
+    .agenda-day__num { font-size: 0.75rem; font-weight: 700; color: var(--pg-ink); }
+
+    .agenda-entry {
+      padding: 0.12rem 0.35rem;
+      min-height: 2.25rem;
+      font-size: 0.6875rem;
+      border-top: 1px solid var(--pg-border);
+    }
+
+    .agenda-entry__num { font-weight: 700; color: var(--pg-muted); font-size: 0.625rem; }
+
+    /* —— Paradigm-style tabs (referencia workflows) —— */
+    .ref-tabs {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      border: 1px solid var(--pg-border);
+      border-radius: 0;
+      overflow: hidden;
+    }
+
+    .ref-tabs button {
+      padding: 0.65rem 0.5rem;
+      border: none;
+      border-right: 1px solid var(--pg-border);
+      background: var(--pg-surface-muted);
+      font: inherit;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--pg-secondary);
+      cursor: pointer;
+      border-radius: 0;
+    }
+
+    .ref-tabs button:last-child { border-right: none; }
+
+    .ref-tabs button.is-active {
+      background: var(--pg-surface);
+      color: var(--pg-ink);
+      font-weight: 600;
+    }
+
+    /* —— Paradigm-style list (referencia accuracy) —— */
+    .ref-list { border-top: 1px solid var(--pg-border); }
+
+    .ref-list-item {
+      padding: 0.85rem 0;
+      border-bottom: 1px solid var(--pg-border);
+      font-size: 0.9375rem;
+    }
+
+    .ref-list-item.is-active { font-weight: 600; }
+
+    .ref-checklist {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .ref-checklist li {
+      position: relative;
+      padding: 0.65rem 0 0.65rem 1.5rem;
+      border-bottom: 1px solid var(--pg-border);
+      color: var(--pg-secondary);
+      font-size: 0.875rem;
+    }
+
+    .ref-checklist li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--pg-muted);
+      font-weight: 600;
+    }
+
+    .ref-checklist strong {
+      display: block;
+      color: var(--pg-ink);
+      font-weight: 600;
+      margin-bottom: 0.15rem;
+    }
+
+    .ds-note {
+      margin: 0.75rem 0 0;
+      padding: 0.65rem 0.75rem;
+      background: var(--pg-accent-subtle);
+      border-left: 2px solid var(--pg-accent);
+      font-size: 0.8125rem;
+      color: var(--pg-secondary);
+    }
+
+    .ds-do-dont {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    @media (max-width: 720px) {
+      .ds-layout { grid-template-columns: 1fr; }
+      .ds-nav { position: static; max-height: none; }
+      .ds-do-dont { grid-template-columns: 1fr; }
+      .ref-tabs { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="ds-layout">
+    <nav class="ds-nav" aria-label="Design system">
+      <img class="ds-nav__logo" src="assets/logo_01.svg" alt="GUIBL" />
+      <h1>Design System</h1>
+      <p class="ds-nav__meta">Paradigm-inspired · CSS puro · Sin Tailwind · Esquinas rectas en UI operativa</p>
+      <ul>
+        <li><a href="#principios">Principios</a></li>
+        <li><a href="#tokens">Tokens</a></li>
+        <li><a href="#tipografia">Tipografía</a></li>
+        <li><a href="#botones">Botones</a></li>
+        <li><a href="#ui-densa">UI densa</a></li>
+        <li><a href="#inputs">Inputs de texto</a></li>
+        <li><a href="#fechas">Inputs de fecha</a></li>
+        <li><a href="#links">Campos de links</a></li>
+        <li><a href="#tareas">Tareas y selects</a></li>
+        <li><a href="#notas">Notas pendientes</a></li>
+        <li><a href="#shell">Shell y menú</a></li>
+        <li><a href="#admin-web">Admin web</a></li>
+        <li><a href="#calendario">Calendario agenda</a></li>
+        <li><a href="#referencias">Referencias Paradigm</a></li>
+        <li><a href="#implementacion">Implementación</a></li>
+      </ul>
+    </nav>
+
+    <main class="ds-main">
+      <section class="ds-section" id="principios">
+        <p class="ds-kicker">GUIBL · Design System</p>
+        <h2>Principios visuales</h2>
+        <p class="ds-lead">
+          Sistema enterprise limpio inspirado en <a href="https://www.paradigmai.com/" target="_blank" rel="noopener">Paradigm</a>.
+          Canvas gris claro, superficies blancas, acento azul <code>#0a33ff</code>, bordes finos y <strong>sin esquinas redondeadas</strong>
+          en la UI operativa (agenda, formularios, calendario, date picker). La profundidad viene del contraste y las líneas, no de sombras decorativas.
+        </p>
+        <div class="ds-do-dont">
+          <div class="ds-panel">
+            <h3>Hacer</h3>
+            <ul>
+              <li>CSS puro con variables (<code>--pg-*</code>)</li>
+              <li>UI en español (Argentina)</li>
+              <li>Guardar campos al blur cuando hay autosave</li>
+              <li>DatePickerField en lugar de <code>input type="date"</code></li>
+              <li>Bordes <code>1px solid var(--pg-border)</code></li>
+              <li>Focus: borde accent + ring sutil</li>
+            </ul>
+          </div>
+          <div class="ds-panel">
+            <h3>Evitar</h3>
+            <ul>
+              <li>Tailwind / CSS modules</li>
+              <li>Radios en inputs de agenda y calendario</li>
+              <li>Sombras grandes en cards operativas</li>
+              <li>Naranja/amber como acento principal</li>
+              <li>Párrafos explicativos bajo cada título</li>
+              <li>Autosave que pisa estado local al escribir</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="ds-section" id="tokens">
+        <p class="ds-kicker">Foundation</p>
+        <h2>Tokens de color</h2>
+        <p class="ds-lead">Definidos en <code>design/guibl-paradigm-tokens.css</code>. Importá ese archivo en tu app con <code>@import url("./design/guibl-paradigm-tokens.css");</code></p>
+        <div class="ds-panel">
+          <table class="ds-token-table">
+            <thead>
+              <tr><th>Token</th><th>Valor</th><th>Uso</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>--pg-canvas</code></td><td><span class="ds-swatch"><span class="ds-swatch__chip" style="background:#f6f7f8"></span>#f6f7f8</span></td><td>Fondo app / shell</td></tr>
+              <tr><td><code>--pg-surface</code></td><td><span class="ds-swatch"><span class="ds-swatch__chip" style="background:#fff"></span>#ffffff</span></td><td>Cards, celdas, inputs</td></tr>
+              <tr><td><code>--pg-surface-muted</code></td><td><span class="ds-swatch"><span class="ds-swatch__chip" style="background:#f0f0f2"></span>#f0f0f2</span></td><td>Hover, fondos secundarios</td></tr>
+              <tr><td><code>--pg-ink</code></td><td><span class="ds-swatch"><span class="ds-swatch__chip" style="background:#080b12"></span>#080b12</span></td><td>Texto principal</td></tr>
+              <tr><td><code>--pg-secondary</code></td><td>#434347</td><td>Texto secundario</td></tr>
+              <tr><td><code>--pg-muted</code></td><td>#6b6b70</td><td>Labels, placeholders</td></tr>
+              <tr><td><code>--pg-border</code></td><td>#e3e4e8</td><td>Bordes, divisores</td></tr>
+              <tr><td><code>--pg-accent</code></td><td><span class="ds-swatch"><span class="ds-swatch__chip" style="background:#0a33ff"></span>#0a33ff</span></td><td>CTA, foco, hoy, selección</td></tr>
+              <tr><td><code>--pg-accent-subtle</code></td><td>rgba(10,51,255,0.08)</td><td>Fondo hoy / activo</td></tr>
+              <tr><td><code>--pg-success</code></td><td>#059669</td><td>Completado</td></tr>
+              <tr><td><code>--pg-warning</code></td><td>#d97706</td><td>En proceso</td></tr>
+              <tr><td><code>--pg-error</code></td><td>#dc2626</td><td>Errores</td></tr>
+              <tr><td><code>--pg-radius-*</code></td><td>0</td><td>Todos los radios en agenda operativa</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="ds-panel">
+          <h3>Layout agenda</h3>
+          <table class="ds-token-table">
+            <tbody>
+              <tr><td><code>--agenda-sync-head-min</code></td><td>5.25rem</td><td>Altura header agenda / pendientes</td></tr>
+              <tr><td><code>--agenda-day-width</code></td><td>136px</td><td>Celda día (100% escala Windows)</td></tr>
+              <tr><td><code>--agenda-day-height</code></td><td>120px</td><td>Celda día</td></tr>
+              <tr><td><code>--agenda-calendar-width</code></td><td>952px</td><td>7 × 136px</td></tr>
+              <tr><td><code>--agenda-calendar-height</code></td><td>840px</td><td>7 × 120px</td></tr>
+              <tr><td>Menú lateral</td><td>52px</td><td><code>.app-local-menu</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="ds-section" id="tipografia">
+        <p class="ds-kicker">Typography</p>
+        <h2>Tipografía</h2>
+        <div class="ds-panel">
+          <p style="margin:0 0 0.5rem;font-family:var(--pg-font-serif);font-size:1.65rem;font-weight:600;letter-spacing:-0.02em">Automate your research workflows</p>
+          <p style="margin:0 0 1rem;color:var(--pg-muted);font-size:0.8125rem">Newsreader / serif — títulos editoriales (referencia Paradigm)</p>
+          <p style="margin:0 0 0.35rem;font-size:1.125rem;font-weight:600">Agenda · Panel de proyecto</p>
+          <p style="margin:0 0 1rem;color:var(--pg-muted);font-size:0.8125rem">Inter 600 — headings UI (logo header usa Inter, no serif)</p>
+          <p style="margin:0 0 0.35rem;font-size:0.8125rem;font-weight:500;color:var(--pg-secondary)">Label de campo · 0.8125rem · peso 500</p>
+          <p style="margin:0;font-size:0.6875rem;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;color:var(--pg-muted)">Eyebrow / sección · uppercase</p>
+        </div>
+      </section>
+
+      <section class="ds-section" id="botones">
+        <p class="ds-kicker">Actions</p>
+        <h2>Botones</h2>
+        <p class="ds-lead">CTA primario azul <strong>solo</strong> en formularios y acciones explícitas. En tableros e inputs de contexto: fondo blanco/transparente; el acento aparece en hover o focus ring, no como relleno.</p>
+        <div class="ds-panel">
+          <div class="btn-row">
+            <button type="button" class="btn">Primario</button>
+            <button type="button" class="btn secondary">Secundario</button>
+            <button type="button" class="btn ghost">Ghost</button>
+            <button type="button" class="btn secondary icon-only" title="Actualizar">↻</button>
+          </div>
+          <p class="ds-note" style="margin-top:0.75rem;color:var(--pg-error);font-weight:500">⛔ Anti-patrón: <code>html[data-theme] button { background: accent }</code> — nunca aplicar override global; rompe presupuestos, date pickers y semáforo.</p>
+          <p class="ds-note">En agenda: <code>.agenda-refresh</code> secundario · <code>.agenda-head-icon-btn</code> primario compacto · <code>.agenda-month-nav__btn</code> ghost cuadrado.</p>
+        </div>
+      </section>
+
+      <section class="ds-section" id="ui-densa">
+        <p class="ds-kicker">Tableros</p>
+        <h2>UI densa — Presupuestos</h2>
+        <p class="ds-lead">Controles dentro de <code>.quotes-board-card</code>: sin relleno azul, <strong>sin border-radius</strong>. Celdas de estado usan semáforo operativo fijo (independiente de Paradigm).</p>
+        <div class="ds-panel">
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0.35rem;margin-bottom:0.75rem;font-size:0.625rem;font-weight:700;text-transform:uppercase;text-align:center">
+            <div style="padding:0.45rem;background:var(--pg-estado-pendiente-bg,#f0f0f2);color:var(--pg-secondary);box-shadow:inset 0 0 0 1px var(--pg-border)">Pendiente</div>
+            <div style="padding:0.45rem;background:var(--pg-estado-enviado-bg,#ffb300);color:#fff">Enviado</div>
+            <div style="padding:0.45rem;background:var(--pg-estado-aceptado-bg,#00b858);color:#fff">Aceptado</div>
+            <div style="padding:0.45rem;background:var(--pg-estado-cobrado-bg,#005963);color:#fff">Cobrado</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap">
+            <button type="button" style="display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;padding:0;background:transparent;border:none;color:var(--pg-muted);border-radius:4px" title="Copiar">⎘</button>
+            <button type="button" class="gui-date-picker__trigger" style="width:auto;min-width:7rem;font-size:0.8125rem">
+              <span class="gui-date-picker__placeholder">Elegir fecha</span>
+              <svg class="gui-date-picker__icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="4" width="18" height="18" rx="0"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </button>
+            <input type="text" placeholder="Agregar presupuesto…" style="flex:1;min-width:8rem;height:36px;padding:0.5rem 0.75rem;border:1px solid var(--pg-border);border-radius:0;background:var(--pg-surface);font:inherit;font-size:0.875rem" />
+          </div>
+          <p class="ds-note">Implementación: tokens semáforo en <code>design/guibl-paradigm-tokens.css</code>. En tableros densos, los botones contextuales (fechas, iconos, estados) no deben usar el azul de acento como fondo.</p>
+        </div>
+      </section>
+
+      <section class="ds-section" id="inputs">
+        <p class="ds-kicker">Forms</p>
+        <h2>Inputs de texto</h2>
+        <div class="ds-grid-2">
+          <label class="ds-field">
+            Campo estándar (<code>.pc-field</code>)
+            <input class="pc-field" type="text" placeholder="Nombre del proyecto…" />
+          </label>
+          <label class="ds-field">
+            Búsqueda agenda (<code>.agenda-search</code>)
+            <input class="agenda-search" type="search" placeholder="Filtrar por cliente, marca…" />
+          </label>
+          <label class="ds-field">
+            Tarea editable (<code>.agenda-task__input</code>)
+            <input class="agenda-task__input" type="text" value="Revisar renders" />
+          </label>
+          <label class="ds-field">
+            Comentarios generales
+            <textarea class="agenda-project-notes" placeholder="Notas, acuerdos, pendientes generales…"></textarea>
+          </label>
+        </div>
+        <p class="ds-note">Autosave: actualizar estado local en <code>onChange</code> con <code>{ save: false }</code>; persistir en <code>onBlur</code> (<code>onFlushMeta</code>).</p>
+      </section>
+
+      <section class="ds-section" id="fechas">
+        <p class="ds-kicker">DatePickerField</p>
+        <h2>Inputs de fecha</h2>
+        <p class="ds-lead">
+          Componente <code>DatePickerField</code> (react-day-picker + date-fns). Trigger, popover y celdas del calendario
+          <strong>sin border-radius</strong>. Hoy: borde azul. Seleccionado: fondo azul.
+        </p>
+        <div class="ds-grid-2">
+          <div>
+            <label class="ds-field">
+              Límite de ítem
+              <button type="button" class="gui-date-picker__trigger" style="width:100%">
+                <span class="gui-date-picker__placeholder">Límite</span>
+                <svg class="gui-date-picker__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="4" width="18" height="18" rx="0"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              </button>
+            </label>
+          </div>
+          <div>
+            <label class="ds-field">
+              Con valor
+              <button type="button" class="gui-date-picker__trigger" style="width:100%">
+                <span>2 Jul 2026</span>
+                <svg class="gui-date-picker__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="4" width="18" height="18" rx="0"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              </button>
+            </label>
+          </div>
+        </div>
+        <div class="gui-date-picker__popover-demo">
+          <div class="rdp-demo-head">
+            <span>julio 2026</span>
+            <span style="color:var(--pg-muted)">‹ ›</span>
+          </div>
+          <div class="rdp-demo-grid">
+            <span>lu</span><span>ma</span><span>mi</span><span>ju</span><span>vi</span><span>sá</span><span>do</span>
+            <div class="rdp-day is-outside">29</div><div class="rdp-day is-outside">30</div><div class="rdp-day">1</div><div class="rdp-day is-today is-selected">2</div><div class="rdp-day">3</div><div class="rdp-day">4</div><div class="rdp-day">5</div>
+          </div>
+          <div style="display:flex;justify-content:flex-end;gap:0.35rem;margin-top:0.5rem;padding-top:0.45rem;border-top:1px solid var(--pg-border);font-size:0.75rem">
+            <button type="button" class="btn ghost" style="min-height:auto;padding:0.25rem 0.55rem">Borrar</button>
+            <button type="button" class="btn ghost" style="min-height:auto;padding:0.25rem 0.55rem;color:var(--pg-accent)">Hoy</button>
+          </div>
+        </div>
+        <p class="ds-note">Archivos: <code>components/DatePickerField.tsx</code>, <code>DatePickerField.css</code>, overrides en <code>guibl-theme.css</code> bajo <code>button.gui-date-picker__*</code>.</p>
+      </section>
+
+      <section class="ds-section" id="links">
+        <p class="ds-kicker">Agenda meta</p>
+        <h2>Campos de links</h2>
+        <p class="ds-lead"><code>ImportantLinkField</code> — selector de tipo + URL + copiar / abrir / eliminar.</p>
+        <div class="ds-panel" style="display:grid;gap:0.5rem">
+          <div class="agenda-link-field">
+            <span class="agenda-link-field__type" title="Google Drive">DR</span>
+            <input class="agenda-link-field__input" type="url" placeholder="Carpeta de entregables en Drive…" />
+            <div class="agenda-link-field__actions">
+              <button type="button" class="agenda-link-field__icon-btn" title="Copiar">⎘</button>
+              <button type="button" class="agenda-link-field__icon-btn" title="Abrir">↗</button>
+            </div>
+          </div>
+          <div class="agenda-link-field">
+            <span class="agenda-link-field__type">LK</span>
+            <input class="agenda-link-field__input" type="url" value="https://docs.google.com/…" />
+            <div class="agenda-link-field__actions">
+              <button type="button" class="agenda-link-field__icon-btn">⎘</button>
+              <button type="button" class="agenda-link-field__icon-btn">↗</button>
+              <button type="button" class="agenda-link-field__icon-btn" title="Eliminar">×</button>
+            </div>
+          </div>
+          <button type="button" class="btn secondary" style="justify-self:start">+ Link</button>
+        </div>
+      </section>
+
+      <section class="ds-section" id="tareas">
+        <p class="ds-kicker">Items</p>
+        <h2>Tareas y estados</h2>
+        <div class="ds-panel">
+          <div style="display:flex;align-items:center;gap:0.35rem;flex-wrap:wrap">
+            <input class="agenda-task__input" type="text" value="Enviar preview al cliente" style="flex:1;min-width:140px" />
+            <select class="agenda-task__status agenda-task__status--pending">
+              <option>PENDIENTE</option>
+            </select>
+            <select class="agenda-task__status agenda-task__status--in_progress">
+              <option selected>EN PROCESO</option>
+            </select>
+            <select class="agenda-task__status agenda-task__status--completed">
+              <option>COMPLETADO</option>
+            </select>
+            <button type="button" class="btn ghost" style="padding:0.2rem 0.4rem">×</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="ds-section" id="notas">
+        <p class="ds-kicker">Pendientes</p>
+        <h2>Notas por tarea</h2>
+        <div class="ds-panel">
+          <button type="button" class="agenda-pending-note__toggle">Notas</button>
+          <textarea class="agenda-pending-note__input" placeholder="Notas sobre este pendiente…" style="margin-top:0.35rem"></textarea>
+          <p class="ds-note">Guardar en <code>onBlur</code> vía <code>saveAgendaPendingTaskNote</code> (Firestore: <code>agendaPendingTaskNotes</code>).</p>
+        </div>
+      </section>
+
+      <section class="ds-section" id="shell">
+        <p class="ds-kicker">App shell</p>
+        <h2>Menú lateral + header</h2>
+        <div class="demo-shell">
+          <div class="demo-sidebar">
+            <button type="button" class="is-active" title="Agenda">▦</button>
+            <button type="button" title="Proyectos">+</button>
+            <button type="button" title="Buscador">⌕</button>
+            <button type="button" title="Scripts">&lt;&gt;</button>
+          </div>
+          <div>
+            <div class="demo-main-head">
+              <img src="assets/logo_01.svg" alt="GUIBL" />
+              <button type="button" class="btn secondary" style="min-height:1.75rem;padding:0.35rem 0.65rem;font-size:0.75rem">Actualizar</button>
+            </div>
+            <div style="padding:1rem 1.25rem;color:var(--pg-muted);font-size:0.8125rem">Toolbar mes + calendario…</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="ds-section" id="admin-web">
+        <p class="ds-kicker">Admin web (ejemplo)</p>
+        <h2>Navbar y feedback (web)</h2>
+        <p class="ds-lead">Tema claro Paradigm en <code>frontend/src/index.css</code> — acento <code>#0a33ff</code>, canvas <code>#f6f7f8</code>, <strong>esquinas rectas</strong> (<code>--radius: 0</code>) en UI operativa.</p>
+        <div class="ds-panel">
+          <div style="display:flex;align-items:center;gap:0.75rem;padding:0.5rem 0.75rem;border:1px solid var(--pg-border);background:var(--pg-surface);margin-bottom:0.75rem">
+            <strong style="font-size:0.9375rem">guibl</strong>
+            <span style="font-size:0.8125rem;color:var(--pg-secondary);padding:0.35rem 0.65rem;background:var(--pg-accent-subtle);color:var(--pg-accent);border-radius:8px">Presupuestos</span>
+            <span style="font-size:0.8125rem;color:var(--pg-muted);padding:0.35rem 0.65rem">Agenda</span>
+            <span style="flex:1"></span>
+            <span style="font-size:0.75rem;color:var(--pg-muted)">usuario@ejemplo.com</span>
+          </div>
+          <div style="display:grid;gap:0.5rem">
+            <div style="padding:0.65rem 0.85rem;border-radius:8px;background:var(--pg-success-subtle);color:var(--pg-success);border:1px solid rgba(5,150,105,0.25);font-size:0.8125rem">Presupuesto guardado.</div>
+            <div style="padding:0.65rem 0.85rem;border-radius:8px;background:var(--pg-warning-subtle);color:var(--pg-warning);border:1px solid rgba(217,119,6,0.25);font-size:0.8125rem">Falta cotización ARS.</div>
+            <div style="padding:0.65rem 0.85rem;border-radius:8px;background:var(--pg-error-subtle);color:var(--pg-error);border:1px solid rgba(220,38,38,0.25);font-size:0.8125rem">Error al generar PDF.</div>
+          </div>
+          <p class="ds-note">Colores de estado del tablero de presupuestos (Pendiente/Cobrado…) <strong>no</strong> usan Paradigm — semáforo operativo fijo. Ver sección <a href="#ui-densa">UI densa</a>.</p>
+        </div>
+      </section>
+
+      <section class="ds-section" id="calendario">
+        <p class="ds-kicker">Agenda grid</p>
+        <h2>Celdas del calendario</h2>
+        <p class="ds-lead">Scroll interno si hay más de 2 proyectos; scroll automático por hover en bordes superior/inferior.</p>
+        <div class="agenda-calendar-demo">
+          <div class="agenda-week-demo">
+            <div class="agenda-day">
+              <div class="agenda-day__head"><span>LUN</span><span class="agenda-day__num">30</span></div>
+            </div>
+            <div class="agenda-day">
+              <div class="agenda-day__head"><span>MAR</span><span class="agenda-day__num">1</span></div>
+            </div>
+            <div class="agenda-day agenda-day--today">
+              <div class="agenda-day__head"><span>JUE</span><span class="agenda-day__num">2</span></div>
+              <div class="agenda-entry"><span class="agenda-entry__num">343</span> Fiestas Conmebol</div>
+            </div>
+            <div class="agenda-day"><div class="agenda-day__head"><span>VIE</span><span class="agenda-day__num">3</span></div></div>
+            <div class="agenda-day"><div class="agenda-day__head"><span>SÁB</span><span class="agenda-day__num">4</span></div></div>
+            <div class="agenda-day"><div class="agenda-day__head"><span>DOM</span><span class="agenda-day__num">5</span></div></div>
+            <div class="agenda-day"><div class="agenda-day__head"><span>LUN</span><span class="agenda-day__num">6</span></div></div>
+          </div>
+        </div>
+        <p class="ds-note">Hoy: recuadro azul completo (<code>.agenda-day--today</code>), sin línea interna bajo el día de la semana.</p>
+      </section>
+
+      <section class="ds-section" id="referencias">
+        <p class="ds-kicker">Referencias externas</p>
+        <h2>Patrones Paradigm</h2>
+        <div class="ds-grid-2">
+          <div class="ds-panel">
+            <h3>Tabs / workflows</h3>
+            <p style="margin:0 0 0.75rem;font-size:0.8125rem;color:var(--pg-secondary)">Esquinas rectas, divisores verticales, tab activo fondo blanco.</p>
+            <div class="ref-tabs">
+              <button type="button">Private Equity</button>
+              <button type="button">Investment Banking</button>
+              <button type="button" class="is-active">Consulting</button>
+              <button type="button">Hedge Funds</button>
+              <button type="button">Growth</button>
+              <button type="button">Recruiting</button>
+            </div>
+          </div>
+          <div class="ds-panel">
+            <h3>Lista con divisores</h3>
+            <p style="margin:0 0 0.5rem;font-size:0.6875rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--pg-muted)">Workflows</p>
+            <p style="margin:0 0 0.75rem;font-family:var(--pg-font-serif);font-size:1.25rem;font-weight:600">Automate your research workflows</p>
+            <div class="ref-list">
+              <div class="ref-list-item is-active">Consulting</div>
+              <div class="ref-list-item">Origination</div>
+              <div class="ref-list-item">Due diligence</div>
+            </div>
+          </div>
+        </div>
+        <div class="ds-panel" style="margin-top:1rem">
+          <h3>Accuracy checklist (referencia)</h3>
+          <ul class="ref-checklist">
+            <li><strong>Cross-references across sources</strong>Agents verify across multiple data sources before providing an output.</li>
+            <li><strong>Auditable by design</strong>Click on any agent to see exactly what sources it used.</li>
+            <li><strong>Safeguards against hallucination</strong>If the answer isn't findable, the cell stays blank.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="ds-section" id="implementacion">
+        <p class="ds-kicker">Code map</p>
+        <h2>Contenido del repo</h2>
+        <div class="ds-panel">
+          <table class="ds-token-table">
+            <thead><tr><th>Área</th><th>Archivo</th></tr></thead>
+            <tbody>
+              <tr><td>Guía visual</td><td><code>design-system.html</code></td></tr>
+              <tr><td>Tokens CSS</td><td><code>design/guibl-paradigm-tokens.css</code></td></tr>
+              <tr><td>Documentación</td><td><code>DESIGN.md</code></td></tr>
+              <tr><td>Logo</td><td><code>assets/logo_01.svg</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="ds-lead">Abrí <code>design-system.html</code> en el navegador, o serví el repo con cualquier servidor estático (<code>npx serve .</code>).</p>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
