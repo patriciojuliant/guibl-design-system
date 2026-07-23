@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <!-- GUIBL Paradigm  folder icon, radius 0, stroke 1.75 -->
+  <path
+    d="M3 7.5V18a1.5 1.5 0 0 0 1.5 1.5h15A1.5 1.5 0 0 0 21 18V9.5A1.5 1.5 0 0 0 19.5 8H12L9.8 5.6A1 1 0 0 0 9.05 5.3H4.5A1.5 1.5 0 0 0 3 6.8v.7z"
+    stroke="#080B12"
+    stroke-width="1.75"
+    stroke-linejoin="miter"
+    stroke-linecap="square"
+  />
+</svg>
